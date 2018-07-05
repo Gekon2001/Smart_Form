@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="CSS/Style.css">
+</head>
+
+<body>
+	<div class="formcenter">
+		<form class="formcontainer">
+			<div class="signup">
+				<p>Signup</p>
+				<div class="progres_meter stage1">
+					<div></div>
+					<div></div>
+				</div>
+				</div>
+			<div class="stage1">
+				<label for="f_email">EMAIL</label>
+				<input type="email" name="f_email" id="f_email">
+				<label for="f_password">PASSWORD</label>
+				<input type="password" name="f_password" id="f_password">
+				<label for="c_f_password">CONFIRM PASSWORD</label>
+				<input type="password" name="c_f_password" id="c_f_password">
+			</div>
+			<div class="stage2 hide">
+				<div class="birthday">
+					<p>DATE OF BIRTH</p>
+					<div class="birthcontainer">
+					<input type="text" name="birthday" placeholder="DD">
+					
+					<input type="text" name="birthday" placeholder="MM">
+					
+					<input type="text" name="birthday" placeholder="YYYY">
+					</div>
+				</div>
+				<div class="gender">
+					<p>GENDER</p>
+					<div class="gendercontainer">
+					<input type="radio" class="hide" name="gender" id="male">
+					<label for="male">MALE</label>
+					<input type="radio" class="hide" name="gender" id="female">
+					<label for="female">FEMALE</label>
+					<input type="radio" class="hide" name="gender" id="unspecified">
+					<label for="unspecified">UNSPECIFIED</label>
+					</div>
+				</div>
+				<div class="asking">
+					<p>WHERE DID YOU HEAR ABOUT US?</p>
+					<div class="styled_select">
+						<span></span>
+						<select name="asking">
+							<option value="None"></option>
+							<option value="Friend">From friend</option>
+							<option value="TV">From TV</option>
+							<option value="Internet">From Internet</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="stage3flex hide">
+			<div class="stage3">
+				<span></span>
+				<a href="#"> Go to Dashboard </a>
+			</div>
+			</div>
+
+			<div class="paginator">
+				<a href="#" class="invisible"> Back </a>
+				<a href="#"> Next  <div>|</div> </a>
+			</div>
+		</form>
+	</div>
+
+<script> 
+	
+		
+
+		var form_json = {};
+
+		$(`.stage3flex a`).click(function(){
+			delete form_json.cpassword;
+			delete form_json.dd;
+			delete form_json.mm;
+			delete form_json.yyyy;
+			delete form_json.stage;
+			console.log(form_json);
+		});
+	 	$(`.paginator a:last-child`).click(function(){
+		form_json.email = $(`#f_email`).val();
+		form_json.password = $(`#f_password`).val(); 
+		form_json.gender = $(`.gendercontainer input:checked + label`).text();
+		form_json.select = $(`.styled_select select option:selected`).text();
+		form_json.birthday = 0;
+		form_json.cpassword = $(`#c_f_password`).val();
+		form_json.dd = $(`.birthcontainer input:first-child`).val();
+		form_json.mm = $(`.birthcontainer input:nth-child(2)`).val();
+		form_json.yyyy = $(`.birthcontainer input:last-child`).val();
+		form_json.stage = 0;
+		
+		
+				// stage 1----------------------------------------------------------------- 	
+
+				if ($(`div.progres_meter`).hasClass(`stage1`)) {
+				if (!isValidEmailAddress(form_json.email)) { 
+				$(`.stage1 label[for=f_email]`).text(`EMAIL IS REQUIRED`).css(`color`, `rgb(222, 16, 29)`); form_json.stage+=1} else { $(`.stage1 label[for=f_email]`).text(`EMAIL`).css(`color`, `black`) };
+
+				if (form_json.password.toString().length < 6) {
+				$(`.stage1 label[for=f_password]`).text(`ERROR! WRITE 6 SIMBOL OR MORE`).css(`color`, `rgb(222, 16, 29)`); form_json.stage+=1} else {$(`.stage1 label[for=f_password]`).text(`PASSWORD`).css(`color`, `black`)};
+				
+				if (form_json.password != form_json.cpassword) {
+				$(`.stage1 label[for=c_f_password]`).text(`ERROR! CHECK THE CONFIRMED PASSWORD`).css(`color`, `rgb(222, 16, 29)`); form_json.stage+=1} else {$(`.stage1 label[for=c_f_password]`).text(`CONFIRM PASSWORD`).css(`color`, `black`)};
+
+				if (form_json.stage != 0) {form_json.stage = 0; return};
+
+				$(`div.progres_meter`).removeClass(`stage1`).addClass(`stage2`);
+				$(`.stage1`).addClass(`hide`);							
+				$(`.stage2.hide`).removeClass(`hide`);
+				$(`.paginator a:first-child`).removeClass(`invisible`);
+				} else {
+
+					// stage 2----------------------------------------------------------------
+				if ((form_json.dd < 1) || (form_json.dd > 31) || (isNaN(form_json.dd)) || (form_json.dd.toString().length != 2)) {
+					$(`.birthcontainer input:first-child`).css(`borderColor`, 'red'); 
+					form_json.stage+=1} else {
+						$(`.birthcontainer input:first-child`).css(`borderColor`, ``)};
+				if ((form_json.mm < 1) || (form_json.mm > 12) || (isNaN(form_json.mm)) || (form_json.mm.toString().length != 2)) {
+					$(`.birthcontainer input:nth-child(2)`).css({"border-left" : "1px solid red", "borderColor" : "red"}); 
+					form_json.stage+=1} else {
+						$(`.birthcontainer input:nth-child(2)`).css({"border-left" : "", "borderColor" : ""})};
+				if ((form_json.yyyy < 1) || (isNaN(form_json.yyyy)) || (form_json.yyyy.toString().length != 4)) {
+					$(`.birthcontainer input:nth-child(3)`).css({"border-left" : "1px solid red", "borderColor" : "red"}); 
+					form_json.stage+=1} else {
+						$(`.birthcontainer input:nth-child(3)`).css({"border-left" : "", "borderColor" : ""})};
+
+					form_json.birthday = new Date(form_json.yyyy, (form_json.mm-1), form_json.dd);
+				form_json.date = new Date();
+				if ((form_json.date.getFullYear() - form_json.yyyy) < 18) {
+					$(`.birthday p`).text(`YOU ARE TO YANG! 18 YEARS NEEDED`).css(`color`, `red`); form_json.stage+=1;} else {
+					$(`.birthday p`).text(`DATE OF BIRTH`).css(`color`, ``);
+					if ((form_json.date.getFullYear() - form_json.yyyy) == 18) {
+					$(`.birthday p`).text(`DATE OF BIRTH`).css(`color`, ``)
+						if ((form_json.date.getMonth() + 1 - form_json.mm) < 0) {
+							$(`.birthday p`).text(`YOU ARE TO YANG! 18 YEARS NEEDED`).css(`color`, `red`); form_json.stage+=1;} else {
+								$(`.birthday p`).text(`DATE OF BIRTH`).css(`color`, ``)
+								if ((form_json.date.getDate()-form_json.dd) < 0) {
+								$(`.birthday p`).text(`YOU ARE TO YANG! 18 YEARS NEEDED`).css(`color`, `red`); form_json.stage+=1;	}}}
+							};
+				
+				if ($(`.gendercontainer input:checked`).length == 0) {
+					$(`.gender p`).text(`CHOOSE YOUR GENDER!`).css(`color`, `red`); form_json.stage+=1;} else {
+						$(`.gender p`).text(`GENDER`).css(`color`, `black`)
+					};
+
+					if (form_json.stage > 0) {form_json.stage = 0; return};
+				form_json.birthday = Date.parse(form_json.birthday);
+
+					if (
+						$(`div.progres_meter`).hasClass(`stage2`)) {
+						$(`div.progres_meter`).removeClass(`stage2`).addClass(`stage3`);
+						$(`div.signup p`).text(`Thank you!`);
+						$(`.stage2`).addClass(`hide`);
+						$(`.stage3flex`).removeClass(`hide`);
+						$(`.paginator`).addClass(`hide`);
+					};
+				}
+			})
+	function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(emailAddress);
+ }
+	
+</script>
+	
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,332 @@
+html, body {
+	width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.formcenter {
+	display: -webkit-flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+}
+.formcontainer {
+	border: 1px solid rgba(184, 184, 184, 0.5);
+	border-radius: 5px;
+	width: 300px;
+	height: 420px;
+}
+
+/*head of the app------------------------------------------------*/
+
+.signup p {
+	font-family: 'Roboto', sans-serif;
+	color: rgba(60, 100, 186, 0.8);
+	text-align: center;
+}
+
+.progres_meter {
+	display: -webkit-flex;
+	display: flex;
+   width: 100%;
+   height: 6px;
+ }
+.progres_meter :first-child {
+	background-color: rgb(50, 93, 186);
+	width: 33%;
+	height: 100%;
+	border-top: 1px solid rgb(50, 93, 186);
+	border-bottom: 1px solid rgb(50, 93, 186);
+}
+.progres_meter :last-child {
+	width: 67%;
+	height: 100%;
+	border-top: 1px solid rgba(184, 184, 184, 0.5);
+	border-bottom: 1px solid rgba(184, 184, 184, 0.5);
+}
+.signup .stage2 :first-child  {
+	 -webkit-animation-name: stage2up; 
+    -webkit-animation-duration: 3s; 
+    animation-name: stage2up;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+.signup .stage2 :last-child {
+	 -webkit-animation-name: stage2down; 
+    -webkit-animation-duration: 3s; 
+    animation-name: stage2down;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+.signup .stage3 :first-child  {
+	 -webkit-animation-name: stage3up; 
+    -webkit-animation-duration: 3s; 
+    animation-name: stage3up;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+.signup .stage3 :last-child {
+	 -webkit-animation-name: stage3down; 
+    -webkit-animation-duration: 3s; 
+    animation-name: stage3down;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+
+
+/*center of the app-----------------------------------------*/
+
+.formcontainer > .stage1 
+ {
+	padding: 17% 5%;
+	height: 50%;
+}
+.formcontainer > div.stage2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 74.3%;
+	padding: 0% 5%;
+}
+.stage1 {
+	font-size: 70%;
+}
+.stage1 input {
+	border: none;
+	border-bottom: 1px solid rgba(184, 184, 184, 0.5);
+	margin-top: 6%;
+	margin-bottom: 6%;
+	width: 100%;
+	display: block;
+}
+	/*Stage 2--------------------*/
+.stage2 p {
+	font-size: 80%;
+	text-align: center;
+	margin-top: 1.5em;
+}
+.stage2 .birthday p {
+margin-top: 0.5em;
+}
+
+.birthcontainer, .gendercontainer {
+	display: flex;
+	width: 100%;
+	height: 20%;
+	font-family: 'Roboto', sans-serif;
+	letter-spacing: -0.08em;
+
+}
+.stage2 input,
+.stage2 label {
+	width: 33.3%;
+	height: 2.5em;
+	text-align: center;
+	border: 1px solid rgba(184, 184, 184, 0.7);
+	border-left: none;
+	font-size: 80%;
+	line-height: 2.5em;	
+}
+.stage2 input:checked + label {
+	background-color: rgba(60, 100, 186, 0.8);
+	border-color: rgba(60, 100, 186, 0);
+	border-radius: 3px;
+	transform: scaleX(1.03);
+	color: white;
+}
+.stage2 .gender label {
+	cursor: pointer;
+}
+.stage2 .birthcontainer :first-child,
+.stage2 .gendercontainer :nth-child(2) {
+	border-left: 1px solid rgba(184, 184, 184, 0.7);
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.stage2 .birthcontainer :last-child,
+.stage2 .gendercontainer :last-child {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+ 
+::-webkit-input-placeholder {
+	color: rgba(184, 184, 184, 0.7)
+}
+.styled_select select {
+	position: relative;
+	padding-left: 2em;
+	width: 100%;
+	height: 2.5em;
+	border-radius: 3px;
+	background: transparent;
+	-webkit-appearance: none;
+}
+	.styled_select span {
+	display: block;
+	position: absolute;
+	border-right: 1.3px solid rgb(50, 93, 186);
+	border-bottom: 1.3px solid rgb(50, 93, 186);
+	width: 9px;
+	height: 9px;
+	left: 90%;
+	top: 25%;
+	transform: rotate(45deg);
+}
+.styled_select {
+	position: relative;
+   width: 100%;
+   border-radius: 3px;
+	overflow: hidden;
+   border-left: 1px solid rgba(184, 184, 184, 0.7);
+}
+/*.stage3 -----------------*/
+.stage3flex {
+	display: flex;
+	width: 100%;
+	height: 80%;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.stage3flex .stage3 {
+	position: relative;
+	width: 100%;
+	height: 58%;
+}	
+
+.stage3flex .stage3 > span {
+	display: block;
+	width: 130px;
+	height: 130px;
+	background-color: lightgreen;
+	border-radius: 50%;
+	margin: auto;
+	margin-top: 2%;
+}
+
+.stage3flex .stage3 > span:before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 50px;
+	height: 25px;
+	border-right: 8px solid rgb(255, 255, 255);
+	border-top: 8px solid rgb(255, 255, 255);
+	right: 40%;
+	top: 23%;
+	transform: rotate(135deg);
+}
+
+.stage3flex .stage3 a {
+	position: relative;
+	text-decoration: none;
+	display: block;
+	border: 1px solid rgb(50, 93, 186);
+	color: rgb(50, 93, 186);
+	border-radius: 3px;
+	width: 40%;
+	height: 2.8em;
+	margin: auto;
+	margin-top: 10%;
+	line-height: 2.8em;
+	padding-left: 10px;
+	background: url(../img/rightarrow.png) no-repeat;
+	background-position: 91% 50%;
+	background-size: 11%;
+	font-size: 80%;
+}
+
+
+/*foot of the app -------------------------------------*/
+
+.paginator {
+	border-top: 1px solid rgba(184, 184, 184, 0.5);
+	padding-top: 5%;
+	display: flex;
+	width: 100%;
+	justify-content: space-between
+
+}
+
+.paginator :first-child {
+	text-decoration: none;
+	width: 20%;
+	padding-left: 5%;
+	font-size: 100%;
+	font-family: 'Roboto', sans-serif;
+	color: rgba(184, 184, 184, 0.5);
+	}
+
+.paginator :last-child {
+	position: relative;
+	text-decoration: none;
+	width: 20%;
+	padding-right: 5%;
+	color: rgb(60, 100, 186);
+	font-family: 'Roboto', sans-serif;
+	font-size: 100%;
+	color: rgba(60, 100, 186, 0.8);
+		
+}
+.paginator a {
+	overflow: hidden;
+}
+.paginator a div {
+		position: absolute;
+		color: rgba(60, 100, 186, 0.8);
+		transform: rotate(-90deg);
+		top: -60%;
+		right: -65%;
+		width: 10px;
+		height: 10px;
+
+}
+.paginator div:before {
+	display: block;
+	position: absolute;
+	content: "_";
+	transform: rotate(45deg);
+	top: -3%;
+
+	
+}
+.paginator div:after {
+	display: block;
+	position: absolute;
+	content: "_";
+	transform: rotate(-45deg) translate(0.63rem, -1.12rem);	
+	left: 21%;
+	top: 192%;
+}
+
+/*other option -------------------------------------*/
+
+.invisible {
+	visibility: hidden;
+}
+
+.hide {
+	display: none!important;
+}
+
+@keyframes stage2up {
+    0%   {width: 33%}
+    100%  {width: 67%}
+ }
+@keyframes stage2down {
+    0%   {width: 67%}
+    100%  {width: 33%}
+ }
+ @keyframes stage3up {
+    0%   {width: 67%}
+    100%  {width: 100%}
+ }
+@keyframes stage3down {
+    0%   {width: 33%}
+    100%  {width: 0%}
+ }
+
+
